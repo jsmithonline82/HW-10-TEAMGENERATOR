@@ -40,6 +40,16 @@ function addMember() {
                 "Manager"
             ]
         }
+//*******INQIERER PROVIDING ROLE SPECIFIC RETURNS********//////
+    ]).then(function ({ name, id, email, role }) {
+        let roleReturn = "";
+        if (role === "Intern") {
+            roleReturn = "school name";
+        } else if (role === "Engineer") {
+            roleReturn = "Github username"
+        } else {
+            roleReturn = "office phone number"
+        }
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
