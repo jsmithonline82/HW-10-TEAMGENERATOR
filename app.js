@@ -41,19 +41,62 @@ function addMember() {
             ]
         }
 //*******INQIERER PROVIDING ROLE SPECIFIC RETURNS********//////
-    ]).then(function ({ name, id, email, role }) {
-        let roleReturn = "";
-        if (role === "Intern") {
-            roleReturn = "school name";
-        } else if (role === "Engineer") {
-            roleReturn = "Github username"
-        } else {
-            roleReturn = "office phone number"
-        }
+]).then(function ({ name, id, email, role }) {
+    let roleReturn = "";
+    if (role === "Intern") {
+        roleReturn = "school name";
+    } else if (role === "Engineer") {
+        roleReturn = "Github username"
+    } else {
+        roleReturn = "office phone number"
+    }
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "roleReturn",
+            message: `Please enter ${roleReturn} associated with team member:`
+        },
+        {
+            type: "list",
+            name: "addTeamMember",
+            message: "Would you like to add additional team members?",
+            choices: [
+                "Yes",
+                "No"
+            ]
+        }
+//**********Classes being established based on user's previous input **********//
+    ]).then(function ({ roleReturn, addTeamMember }) {
+        let newMember;
+        if (role === "Intern") {
+            newMember = new Intern(name, id, email, roleReturn);
+        } else if (role === "Engineer") {
+            newMember = new Engineer(name, id, email, roleReturn);
+        } else {
+            newMember = new Manager(name, id, email, roleReturn);
+        }
+        employees.push(newMember);
+            if (addTeamMember === "Yes") {
+                console.log("--------------------------")
+                addMember();
+            } else {
+                buildTeam();
+            }
+    });
+});
+};
+
+addMember();
+//******HERE WE CALL THE RENDER FUNCTION*********//
+function buildTeam() {
+if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+};
+fs.writeFileSync(outputPath, render(employees));
+};
+
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
