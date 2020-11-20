@@ -1,26 +1,29 @@
 {
-  "name": "hw-10-teamgenerator",
-  "description": "Makes a page of employees in a team for a manager",
+  "name": "unit10hw",
   "version": "1.0.0",
+  "description": "OOP and testing for week 10 homework",
   "main": "app.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
-  "dependencies": {
-    "inquirer": "^7.3.3"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose test/*"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsmithonline82/HW-10-TEAMGENERATOR.git"
+    "url": "git+https://github.com/stevetrilogy/unit10hw.git"
   },
-  "author": "Jackson Smith",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jsmithonline82/HW-10-TEAMGENERATOR/issues"
+    "url": "https://github.com/stevetrilogy/unit10hw/issues"
   },
-  "homepage": "https://github.com/jsmithonline82/HW-10-TEAMGENERATOR#readme"
+  "homepage": "https://github.com/stevetrilogy/unit10hw#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
 }
